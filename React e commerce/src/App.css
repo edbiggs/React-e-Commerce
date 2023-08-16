@@ -1,0 +1,93 @@
+nav {
+  margin-top: 2%;
+  margin-left: 1%;
+
+}
+
+.list-div {
+  display: flex;
+  margin-left: 2%;
+  margin-top: 1%;
+  width: fit-content;
+  /* border: 2px solid black; */
+}
+
+.to-do-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style-position: inside;
+  /* border: 2px solid black; */
+  width: 90%;
+  list-style-type: circle ;
+}
+
+.list-item {
+  display: flex;
+  width: 800px;
+  padding-bottom: 2%;
+  /* border: 2px solid black;*/
+}
+
+.text-input {
+  display: inline;
+  flex-direction: row;
+  align-self: flex-end;
+  width: 800px;
+  /* border: 2px solid black; */
+
+}
+
+.list {
+  margin-left: 2%
+}
+
+.remove {
+margin-left: 2%;
+word-wrap: normal;
+
+}
+
+.checkbox-div {
+  display: flex;
+  border: 2px solid black;
+  width: 4%;
+  height: auto;
+}
+
+.checkbox {
+  margin-left: 2%;
+
+}
+
+
+.login {
+  display: flex;
+  flex-direction: column;
+  width:fit-content;
+  align-items: center;
+  margin: auto;
+  padding-top: 4%;
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  width:fit-content;
+  align-items: center;
+  margin: auto;
+  padding-top: 4%;
+}
+
+.home {
+  text-align: center;
+}
+
+.logged-in {
+  text-align: center;
+}
+
+.welcome {
+  margin-top: 7%;
+  margin-left: 30%;
+}
