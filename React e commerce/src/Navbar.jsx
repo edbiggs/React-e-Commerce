@@ -26,6 +26,9 @@ const Navbar = (props) => {
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/products">Products</a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/mycart">Cart</a>
+              </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Dropdown

@@ -57,7 +57,7 @@ def signup():
             'message':'Could not get user info'
         }
 
-    return render_template('signup.html', form = form)
+
 
 # @app.route('/lookup', methods=["POST"])
 # def lookup_page():
@@ -118,22 +118,48 @@ def add_products():
     
 
 
-@app.route('/products/<product_id>')
+@app.route('/products/<product_id>', methods=['GET'])
 def single_product(product_id):
     product = Product.query.get(product_id)
     if product:
+        print(product)
         return {
-            'status':'ok';
-            'product':product.to_dict()
+            'status':'Ok',
+            'product':product.to_dict(),
+    }
+        
+@app.route('/add_product/<new_product_id>', methods=['POST'])
+def add_product(product_id):
+
+    # product = Cart(current_user.id, new_product_id)
+
+    # db.session.add(product)
+    # db.session.commit()
+    # return redirect(url_for('products_page'))
+
+    try:
+        data = request.json
+        productId = data.get(product_id)
+        userId = data.get(userId)
+        
+
+        new_product = Cart(userId, productId)
+        
+
+        db.session.add(new_product)
+        db.session.commit()
+        return {
+            'status':'Ok',
+            'message':'Succesfully added product to cart'
         }
-@app.route('/add_product/<new_product_id>')
-def add_product(new_product_id):
+    except:
+        return {
+            'status':'Not Ok',
+            'message':'Could not get product info'
+        }
+    
 
-    product = Cart(current_user.id, new_product_id)
 
-    db.session.add(product)
-    db.session.commit()
-    return redirect(url_for('products_page'))
 
 
 
