@@ -10,14 +10,13 @@ db = SQLAlchemy()
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     username = db.Column(db.String(30), nullable=False, unique=True)
-    email = db.Column(db.String(30), nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     cart = db.relationship("Product", secondary="cart")
 
-    def __init__(self, username, password, email):
+    def __init__(self, username, password):
         self.username = username
         self.password = generate_password_hash(password)
-        self.email = email
+
 
     def add_to_cart(self, product):
         p = Cart(self.id, product)
@@ -33,6 +32,18 @@ class User(db.Model, UserMixin):
         p = Cart.query.filter_by(user_id=self.id).all()
         cart = [Product.query.get(obj.product_id) for obj in p]
         return cart
+    
+    
+    # def to_dict(self):
+    #     return {
+    #         'id':self.id,
+    #         'name':self.name,
+    #         'description': self.description,
+    #         'category':self.category,
+    #         'image':self.image,
+    #         'rating': self.rating,
+    #         'price':self.price
+    #     }
     
 
 

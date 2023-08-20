@@ -4,7 +4,7 @@ const Logout = (props) => {
     const handleLogout = (e) => {
         e.preventDefault()
         console.log('logged out')
-        props.setUser(props.defaultState)
+        props.setUser({})
     }
     
     return (

@@ -6,17 +6,18 @@ from flask_login import login_user, logout_user, login_required, current_user
 from .models import User, Product, Cart, db
 from werkzeug.security import check_password_hash
 from urllib.parse import urlencode
-from flask_cors import CORS
+
 
 @app.route('/login', methods=["POST"])
 def login():
     data = request.json
     username = data.get('username')
     password = data.get('password')
-
+    print('loggin in')
+    print(username)
    
     user = User.query.filter_by(username=username).first()
-
+    print(user)
     if user:
         if check_password_hash(user.password, password):
             return {
@@ -37,11 +38,12 @@ def login():
 
 @app.route('/signup', methods=["POST"])
 def signup():
+    print('attempting sign up:')
     try:
         data = request.json
         username = data.get('username')
         password = data.get('password')
-        
+        print(username)
 
         user = User(username,password)
 
@@ -68,7 +70,7 @@ def signup():
         
         
 
-@app.route('/products', methods=["GET"])
+@app.get('/products')
 def add_products():
 
 
@@ -113,7 +115,7 @@ def add_products():
     return  {
         'status':'Ok',
         'data': [p.to_dict()for p in products]
-    }
+    }, 200
 
     
 

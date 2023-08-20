@@ -6,13 +6,14 @@ from flask_login import LoginManager
 from flask_cors import CORS
 
 app = Flask(__name__, template_folder='templates')
+cors = CORS(app)
 app.config.from_object(Config)
 #app.register_blueprint(api)
 
 db.init_app(app)
 migrate = Migrate(app,db)
 login_manager = LoginManager(app)
-CORS(app)
+
 
 @login_manager.user_loader
 def load_user(user_id):

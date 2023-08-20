@@ -5,11 +5,11 @@ const Products = (props) => {
     const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
-        let url = 'http://localhost:5000/products';
+        let url = 'http://localhost:5000/products/';
         const options = {
             method: 'GET',
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json'
             }
         }
 

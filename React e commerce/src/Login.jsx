@@ -6,15 +6,14 @@ const Login = (props) => {
 
     useEffect(() => {
         const setNewUser = async () => {
-            const newUser = await getUser
+            const newUser = await getUser()
             if (newUser) {
                 localStorage.setItem('user', JSON.stringify(props.user))}}
         }, [props.user]);
 
     const getUser = async (e) => {
         e.preventDefault()
-
-
+        console.log('loggin in')
         const url = 'http://localhost:5000/login'
         const options = {
             method: 'POST',
@@ -35,9 +34,12 @@ const Login = (props) => {
             props.setUser(data.data)
             return newUser
         }
-    }
-
-    if (props.user != props.defaultState) {
+    };
+    console.log(props.user.length)
+    console.log({})
+    console.log(props.user)
+    console.log(props.user != {})
+    if (props.user.length) {
         console.log(props.user)
         console.log(props.defaultState)
         return (

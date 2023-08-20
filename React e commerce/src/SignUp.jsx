@@ -3,6 +3,7 @@ import React from 'react'
 const SignUp = (props) => {
 
     const createUser = async (e) => {
+        console.log(e.target.username.value)
         e.preventDefault()
         const url = 'http://localhost:5000/signup'
         const options = {

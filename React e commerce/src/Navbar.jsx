@@ -24,7 +24,7 @@ const Navbar = (props) => {
                 <a className="nav-link active" aria-current="page" href="/signUp">Sign Up</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/products">Products</a>
+                <a className="nav-link active" aria-current="page" href="/products/">Products</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/mycart">Cart</a>
