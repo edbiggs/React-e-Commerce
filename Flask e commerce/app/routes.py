@@ -8,7 +8,7 @@ from werkzeug.security import check_password_hash
 from urllib.parse import urlencode
 
 
-@app.route('/login', methods=["POST"])
+@app.post('/login')
 def login():
     data = request.json
     username = data.get('username')
@@ -21,22 +21,22 @@ def login():
     if user:
         if check_password_hash(user.password, password):
             return {
-                'status':'Ok',
+                'status':'ok',
                 'data': user.to_dict()
-            }
+            },200
         else:
             return {
                 'status':'Not Ok',
                 'message': 'Username or password is incorrect'
-            }
+            },400
     else:
         return{
             'status':'Not Ok',
             'message':'User not found'
-        }
+        },400
 
 
-@app.route('/signup', methods=["POST"])
+@app.route('/signup' ,methods=['POST'])
 def signup():
     print('attempting sign up:')
     try:
@@ -49,15 +49,20 @@ def signup():
 
         db.session.add(user)
         db.session.commit()
-        return {
-            'status':'Ok',
+        
+        response_data ={
+            'status':'ok',
             'message':'Succesfully created new user'
         }
+        response = jsonify(response_data)
+        return response, 200
     except:
-        return {
+        response_data = {
             'status':'Not Ok',
             'message':'Could not get user info'
         }
+        response = jsonify(response_data)
+        return response, 400
 
 
 
@@ -70,12 +75,9 @@ def signup():
         
         
 
-@app.get('/products')
+@app.route('/products', methods=["GET"])
 def add_products():
-
-
     products = Product.query.all()
-
     if products == []:
         ids = []
         titles = []
@@ -111,26 +113,28 @@ def add_products():
             db.session.add(product)
             db.session.commit()
         
-    print([p.to_dict()for p in products][0]['id'])
-    return  {
-        'status':'Ok',
-        'data': [p.to_dict()for p in products]
-    }, 200
+    
+    return_data=  {
+        'status':'ok',
+        'data': [p.to_dict() for p in products]
+    }
+    response = jsonify(return_data)
+    return response, 200
 
     
 
 
-@app.route('/products/<product_id>', methods=['GET'])
+@app.get('/products/<product_id>')
 def single_product(product_id):
     product = Product.query.get(product_id)
     if product:
         print(product)
         return {
-            'status':'Ok',
+            'status':'ok',
             'product':product.to_dict(),
     }
         
-@app.route('/add_product/<new_product_id>', methods=['POST'])
+@app.post('/add_product/<new_product_id>')
 def add_product(product_id):
 
     # product = Cart(current_user.id, new_product_id)
@@ -151,14 +155,14 @@ def add_product(product_id):
         db.session.add(new_product)
         db.session.commit()
         return {
-            'status':'Ok',
+            'status':'ok',
             'message':'Succesfully added product to cart'
-        }
+        },200
     except:
         return {
             'status':'Not Ok',
             'message':'Could not get product info'
-        }
+        },400
     
 
 
@@ -171,7 +175,7 @@ def cart_page():
     cart = current_user.get_cart()
     return render_template('cart.html', cart=cart)
 
-@app.route('/remove_product/<id>')
+@app.delete('/remove_product/<id>')
 @login_required
 def remove_product(id):
     product = Cart.query.filter_by(product_id=id).first()
