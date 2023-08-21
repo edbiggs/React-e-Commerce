@@ -5,7 +5,7 @@ const Products = (props) => {
     const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
-        let url = 'http://localhost:5000/products/';
+        let url = 'http://localhost:5000/products';
         const options = {
             method: 'GET',
             headers: {
@@ -16,7 +16,7 @@ const Products = (props) => {
         const res = await fetch(url, options)
         const data = await res.json();
         // console.group(data)
-        if (data.status === 'Ok') {
+        if (data.status === 'ok') {
 
             setProducts(data.data)
             console.log(data.data)

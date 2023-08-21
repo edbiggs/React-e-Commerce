@@ -29,7 +29,8 @@ const Login = (props) => {
         const res = await fetch(url, options);
         const data = await res.json()
         const newUser = data.data
-        if (data.status === 'Ok') {
+        console.log(newUser)
+        if (data.status === 'ok') {
             console.log('succesefully logged in')
             props.setUser(data.data)
             return newUser

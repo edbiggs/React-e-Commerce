@@ -34,16 +34,10 @@ class User(db.Model, UserMixin):
         return cart
     
     
-    # def to_dict(self):
-    #     return {
-    #         'id':self.id,
-    #         'name':self.name,
-    #         'description': self.description,
-    #         'category':self.category,
-    #         'image':self.image,
-    #         'rating': self.rating,
-    #         'price':self.price
-    #     }
+    def to_dict(self):
+        return {
+            "username": self.username
+        }
     
 
 
