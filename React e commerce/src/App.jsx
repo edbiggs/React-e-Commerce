@@ -35,9 +35,9 @@ function App() {
           <Route path='/' element={<Home user={user} defaultState={defaultState} />}></Route>
           <Route path='/login' element={<Login user={user} setUser={setUser} defaultState={defaultState} />}></Route>
           <Route path='/logout' element={<Logout user={user} setUser={setUser} defaultState={defaultState} />}></Route>
-          <Route path='/signup' element={<SignUp user={user} defaultState={defaultState} />}></Route>
+          <Route path='/signup' element={<SignUp user={user} setUser={setUser} defaultState={defaultState} />}></Route>
           <Route path='/products/' element={<Products setCart={setCart} cart={cart} user={user} />}></Route>
-          <Route path='/products/:productID' element={<SingleProduct />}></Route>
+          <Route path='/products/:productID' element={<SingleProduct setCart={setCart} cart={cart} user={user}/>}></Route>
           <Route path='/mycart' element={<MyCart cart={cart} setCart={setCart}/>} user={user}></Route>
 
 

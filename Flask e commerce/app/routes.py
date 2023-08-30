@@ -51,7 +51,7 @@ def signup():
         db.session.commit()
         
         response_data ={
-            'status':'ok',
+            'status':'Ok',
             'message':'Succesfully created new user'
         }
         response = jsonify(response_data)
@@ -124,13 +124,14 @@ def add_products():
     
 
 
-@app.get('/products/<product_id>')
+@app.get('/<product_id>')
 def single_product(product_id):
-    product = Product.query.get(product_id)
+    product = Product.query.get(product_id=product_id)
+    print('oaeimfv')
     if product:
         print(product)
         return {
-            'status':'ok',
+            'status':'Ok',
             'product':product.to_dict(),
     }
         
@@ -155,7 +156,7 @@ def add_product(product_id):
         db.session.add(new_product)
         db.session.commit()
         return {
-            'status':'ok',
+            'status':'Ok',
             'message':'Succesfully added product to cart'
         },200
     except:

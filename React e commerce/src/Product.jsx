@@ -73,7 +73,7 @@ const Product = ({ product, cart, setCart, user }) => {
                         ----------------------------------------------------------
                     </div>
                     <div>
-                        <a href="" ><img src={e.target.product['image']} /></a>
+                        <a href="" ><img src={product['image']} /></a>
                     </div>
                     <div>
                         <a className="btn btn-primary add" onClick={addCart} >Add To Cart</a>
@@ -104,7 +104,7 @@ const Product = ({ product, cart, setCart, user }) => {
                     ----------------------------------------------------------
                 </div>
                 <div>
-                    <a ><img src={product['image']} /></a>
+                    <a href={product['id']}><img src={product['image']} /></a>
                     <div>
                         <a className="btn btn-primary add" onClick={(e) => addCart(e, product['id'])}>Add To Cart</a>
                     </div>

@@ -8,13 +8,14 @@ const SingleProduct = (product) => {
     const [singleProduct, setSingleProduct] = useState({})
 
     const getProduct = async (productID) => {
-        let url = `http://localhost:5000/products/${productID}`;
+        let url = `http://localhost:5000/${productID}`;
         const options = {
             method: 'GET',
             headers: {
                 'content-type': 'application/json'
             }
         }
+
         const res = await fetch(url, options)
         const data = await res.json();
         // console.group(data)
