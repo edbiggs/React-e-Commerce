@@ -12,7 +12,8 @@ const SingleProduct = (product) => {
         const options = {
             method: 'GET',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'product_id': {productID}
             }
         }
 
@@ -40,9 +41,7 @@ const SingleProduct = (product) => {
     }
 
     return (
-        <>
-            
-        </>
+        <Product/>            
 
     )
 

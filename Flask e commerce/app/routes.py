@@ -21,7 +21,7 @@ def login():
     if user:
         if check_password_hash(user.password, password):
             return {
-                'status':'ok',
+                'status':'Ok',
                 'data': user.to_dict()
             },200
         else:
@@ -115,7 +115,7 @@ def add_products():
         
     
     return_data=  {
-        'status':'ok',
+        'status':'Ok',
         'data': [p.to_dict() for p in products]
     }
     response = jsonify(return_data)
@@ -126,13 +126,13 @@ def add_products():
 
 @app.get('/<product_id>')
 def single_product(product_id):
-    product = Product.query.get(product_id=product_id)
-    print('oaeimfv')
+    product = Product.query.get(product_id)
+    print(product_id)
     if product:
         print(product)
         return {
             'status':'Ok',
-            'product':product.to_dict(),
+            'data': product.to_dict(),
     }
         
 @app.post('/add_product/<new_product_id>')

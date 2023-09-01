@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import SingleProduct from './SingleProduct'
 
 
-const Product = ({ product, cart, setCart, user }) => {
+const Product = ({ products, cart, setCart, user }) => {
     // ###Save cart to useState###
-
+    console.log(products) 
     const addCart = (e, productId) => {
 
         setCart([cart,productId])
@@ -20,7 +21,7 @@ const Product = ({ product, cart, setCart, user }) => {
         console.log(`cart contents: ${cart}`)
     }
 
-
+    console.log(product['name'])
     // ###Save cart to Flask db###
 
     // const addToCart = async () => {
@@ -56,20 +57,18 @@ const Product = ({ product, cart, setCart, user }) => {
     //         </h2>
     //     )
     // }
-
-
-    const singleProductLink = () => {
+    const singleProductLink = (e, product)  => {
         return (
             <div>
                 <link rel="stylesheet" href='products.css' />
 
                 <div className="product-div" key={product.id}>
                     <div className="details-div" >
-                        {e.target.product['name']} <br />
+                        {product['name']} <br />
                         ----------------------------------------------------------
                     </div>
                     <div className="details-div" >
-                        <p>{e.target.product['price']} </p>
+                        <p>{product['price']} </p>
                         ----------------------------------------------------------
                     </div>
                     <div>
@@ -79,7 +78,7 @@ const Product = ({ product, cart, setCart, user }) => {
                         <a className="btn btn-primary add" onClick={addCart} >Add To Cart</a>
                     </div>
                     <div>
-                        <p > Rating: {e.target.product['rating']} </p>
+                        <p > Rating: {product['rating']} </p>
                     </div>
 
                 </div>
@@ -89,6 +88,8 @@ const Product = ({ product, cart, setCart, user }) => {
             </div>
         )
     }
+
+    
 
     return (
         <div>
@@ -104,7 +105,7 @@ const Product = ({ product, cart, setCart, user }) => {
                     ----------------------------------------------------------
                 </div>
                 <div>
-                    <a href={product['id']}><img src={product['image']} /></a>
+                    <a href="/products/{product['id']" onClick={(e) => singleProductLink(e, product)}><img src={product['image']} /></a>
                     <div>
                         <a className="btn btn-primary add" onClick={(e) => addCart(e, product['id'])}>Add To Cart</a>
                     </div>
